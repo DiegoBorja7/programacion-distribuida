@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>App en JAVA</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: #0a0e27;
+            color: #e0e7ff;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Fondo animado con gradiente futurista */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: -50%;
+            background:
+                    radial-gradient(circle at 20% 30%, rgba(37, 99, 235, 0.35), transparent 45%),
+                    radial-gradient(circle at 80% 70%, rgba(139, 92, 246, 0.35), transparent 45%),
+                    radial-gradient(circle at 50% 90%, rgba(6, 182, 212, 0.25), transparent 50%);
+            animation: aurora 18s ease-in-out infinite alternate;
+            z-index: -2;
+        }
+
+        @keyframes aurora {
+            0%   { transform: translate(0, 0) scale(1); }
+            50%  { transform: translate(4%, -3%) scale(1.08); }
+            100% { transform: translate(-3%, 4%) scale(1.12); }
+        }
+
+        /* Rejilla sutil estilo cyberpunk */
+        body::after {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image:
+                    linear-gradient(rgba(99, 102, 241, 0.06) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(99, 102, 241, 0.06) 1px, transparent 1px);
+            background-size: 55px 55px;
+            mask-image: radial-gradient(circle at center, black 20%, transparent 80%);
+            z-index: -1;
+        }
+
+        .contenedor {
+            background: rgba(15, 23, 42, 0.65);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            padding: 55px 45px;
+            border-radius: 24px;
+            border: 1px solid rgba(129, 140, 248, 0.35);
+            box-shadow:
+                    0 0 60px rgba(59, 130, 246, 0.25),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+            text-align: center;
+            width: 90%;
+            max-width: 540px;
+            position: relative;
+            animation: floatCard 6s ease-in-out infinite;
+        }
+
+        @keyframes floatCard {
+            0%, 100% { transform: translateY(0); }
+            50%      { transform: translateY(-10px); }
+        }
+
+        /* Código decorativo estilo chip */
+        .chip-deco {
+            position: absolute;
+            top: 18px;
+            right: 22px;
+            font-family: 'Courier New', monospace;
+            font-size: 11px;
+            letter-spacing: 2px;
+            color: rgba(139, 92, 246, 0.55);
+            user-select: none;
+        }
+
+        h1 {
+            font-size: clamp(28px, 6vw, 40px);
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            margin-bottom: 8px;
+            background: linear-gradient(135deg, #60a5fa 0%, #a78bfa 50%, #22d3ee 100%);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shine 4s linear infinite;
+        }
+
+        @keyframes shine {
+            to { background-position: 200% center; }
+        }
+
+        .subtitulo {
+            color: #94a3b8;
+            font-size: 15px;
+            margin-bottom: 30px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+
+        /* Etiqueta de autor con resaltado neón */
+        .autor {
+            display: inline-block;
+            position: relative;
+            padding: 12px 26px;
+            border-radius: 50px;
+            font-size: 15px;
+            color: #e0e7ff;
+            background: linear-gradient(135deg, rgba(37, 99, 235, 0.18), rgba(139, 92, 246, 0.18));
+            border: 1px solid rgba(129, 140, 248, 0.4);
+            letter-spacing: 0.5px;
+            transition: all 0.35s ease;
+        }
+
+        .autor strong {
+            font-weight: 800;
+            background: linear-gradient(135deg, #fde68a, #f472b6, #60a5fa);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shine 3s linear infinite;
+            text-shadow: 0 0 24px rgba(244, 114, 182, 0.45);
+            position: relative;
+        }
+
+        /* Línea brillante bajo el nombre */
+        .autor strong::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -3px;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #22d3ee, #a78bfa, transparent);
+            border-radius: 2px;
+            animation: glowLine 2.5s ease-in-out infinite;
+        }
+
+        @keyframes glowLine {
+            0%, 100% { opacity: 0.4; transform: scaleX(0.85); }
+            50%      { opacity: 1;   transform: scaleX(1); }
+        }
+
+        .autor:hover {
+            transform: translateY(-3px) scale(1.03);
+            box-shadow: 0 0 35px rgba(139, 92, 246, 0.45);
+            border-color: rgba(167, 139, 250, 0.8);
+        }
+
+        /* Badge inferior estilo 2050 */
+        .badge {
+            margin-top: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-size: 12px;
+            color: #64748b;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .badge .dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: #22d3ee;
+            box-shadow: 0 0 10px #22d3ee, 0 0 20px #22d3ee;
+            animation: pulse 1.8s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50%      { opacity: 0.4; transform: scale(0.75); }
+        }
+
+        /* Partículas flotantes */
+        .particula {
+            position: fixed;
+            border-radius: 50%;
+            pointer-events: none;
+            background: radial-gradient(circle, rgba(167, 139, 250, 0.9), transparent 70%);
+            animation: flotar linear infinite;
+            z-index: -1;
+        }
+
+        @keyframes flotar {
+            0%   { transform: translateY(110vh) translateX(0) scale(0.6); opacity: 0; }
+            10%  { opacity: 0.9; }
+            90%  { opacity: 0.9; }
+            100% { transform: translateY(-10vh) translateX(40px) scale(1.2); opacity: 0; }
+        }
+
+        @media (max-width: 480px) {
+            .contenedor { padding: 40px 24px; }
+            .chip-deco { font-size: 9px; top: 12px; right: 14px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Partículas generadas por CSS -->
+<span class="particula" style="width:6px;height:6px;left:10%;animation-duration:14s;animation-delay:0s;"></span>
+<span class="particula" style="width:4px;height:4px;left:25%;animation-duration:18s;animation-delay:2s;"></span>
+<span class="particula" style="width:8px;height:8px;left:40%;animation-duration:16s;animation-delay:4s;"></span>
+<span class="particula" style="width:5px;height:5px;left:60%;animation-duration:20s;animation-delay:1s;"></span>
+<span class="particula" style="width:7px;height:7px;left:75%;animation-duration:15s;animation-delay:3s;"></span>
+<span class="particula" style="width:4px;height:4px;left:88%;animation-duration:22s;animation-delay:5s;"></span>
+
+<div class="contenedor">
+    <span class="chip-deco">// v1.1 </span>
+
+    <h1>App en JAVA</h1>
+    <p class="subtitulo">Edición Futurista</p>
+
+    <p class="autor">
+        Desarrollado por <strong>Diego Borja</strong>
+    </p>
+
+    <div class="badge">
+        <span class="dot"></span>
+        <span>Sistema en línea</span>
+        <span class="dot"></span>
+    </div>
+</div>
+
+</body>
+</html>
