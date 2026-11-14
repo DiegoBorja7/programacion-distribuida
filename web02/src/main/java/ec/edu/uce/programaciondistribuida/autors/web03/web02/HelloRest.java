@@ -1,4 +1,4 @@
-package ec.edu.uce.programaciondistribuida.web02;
+package ec.edu.uce.programaciondistribuida.autors.web03.web02;
 
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
