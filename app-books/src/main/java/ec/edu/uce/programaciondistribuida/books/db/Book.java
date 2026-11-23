@@ -21,6 +21,6 @@ public class Book {
     private String title;
     private BigDecimal price;
 
-//    @OneToOne(mappedBy = "book")
-//    private Inventory inventory;
+    @OneToOne(mappedBy = "book")
+    private Inventory inventory;
 }

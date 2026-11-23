@@ -8,5 +8,4 @@ import jakarta.transaction.Transactional;
 @ApplicationScoped
 @Transactional
 public class BookRepository implements PanacheRepositoryBase<Book, String> {
-
 }

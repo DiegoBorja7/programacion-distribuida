@@ -1,0 +1,14 @@
+package ec.edu.uce.programaciondistribuida.books.dtos;
+
+import lombok.*;
+
+@Getter
+@Setter
+@ToString
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+public class AuthorDto {
+    private Integer id;
+    private String name;
+}

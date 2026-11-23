@@ -15,15 +15,23 @@ val quarkusVersion = "3.40.1.1"
 
 dependencies {
     implementation(enforcedPlatform("io.quarkus.platform:quarkus-bom:$quarkusVersion"))
+    
     // Quarkus CDI/CD
     implementation("io.quarkus:quarkus-arc")
-    implementation("io.quarkus:quarkus-hibernate-orm:3.40.1.2")
-    implementation("io.quarkus:quarkus-jdbc-postgresql:${quarkusVersion}")
+
+    // Quarkus Hibernate JP
+    implementation("io.quarkus:quarkus-hibernate-orm:${quarkusVersion}")
     implementation("io.quarkus:quarkus-hibernate-orm-panache:${quarkusVersion}")
+    implementation("io.quarkus:quarkus-jdbc-postgresql:${quarkusVersion}")
 
     //  Quarkus REST
     implementation("io.quarkus:quarkus-rest")
-    implementation("io.quarkus:quarkus-rest-jsonb")}
+    implementation("io.quarkus:quarkus-rest-jsonb")
+
+    //Control de cambios DB
+    implementation("io.quarkus:quarkus-flyway")
+    runtimeOnly("org.flywaydb:flyway-database-postgresql")
+}
 
 java {
     sourceCompatibility = JavaVersion.VERSION_25

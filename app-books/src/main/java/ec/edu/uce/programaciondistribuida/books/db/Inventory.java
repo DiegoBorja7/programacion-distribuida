@@ -17,4 +17,5 @@ public class Inventory {
     private Book book;
     private Integer sold;
     private Integer supplied;
+    private Integer version;
 }

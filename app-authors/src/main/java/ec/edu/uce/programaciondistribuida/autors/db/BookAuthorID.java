@@ -12,5 +12,5 @@ public class BookAuthorID {
     @Column(name = "books_isbn")
     private String bookISBN;
     @Column(name = "authors_id")
-    private String authorID;
+    private Integer authorID;
 }

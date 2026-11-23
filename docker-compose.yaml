@@ -1,10 +1,21 @@
 services:
   books-db:
-    image: postgres
-    restart: always
+    image: postgres:16-alpine
+    container_name: books-db
+    restart: unless-stopped
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
       POSTGRES_DB: books-db
     ports:
       - "5432:5432"
+    volumes:
+      - books_db_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d books-db"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  books_db_data:
