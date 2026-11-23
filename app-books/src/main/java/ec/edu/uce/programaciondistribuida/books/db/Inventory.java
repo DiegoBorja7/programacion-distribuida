@@ -14,6 +14,7 @@ public class Inventory {
     @Id
     @OneToOne
     @JoinColumn
+    @ToString.Exclude
     private Book book;
     private Integer sold;
     private Integer supplied;

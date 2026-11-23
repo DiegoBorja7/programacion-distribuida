@@ -49,11 +49,10 @@ public class BookServiceImplementation implements BookService {
 
     @Override
     public BookDto findById(String isbn) {
-        List<AuthorDto> authors = authorRestClient.getAuthorsByBook(isbn);
-
         return bookRepository.findByIdOptional(isbn)
                 .map(this::mapToDto)
                 .map(bookDto -> {
+                    List<AuthorDto> authors = authorRestClient.getAuthorsByBook(isbn);
                     bookDto.setAuthors(authors);
                     return bookDto;
                 })
